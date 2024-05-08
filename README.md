@@ -1,16 +1,31 @@
-# batch-2---assignment-5---play-with-redux-toolkit-Ahsan-Ullah1871
+### TechLab Video Search Application
 
-এসাইনমেন্ট এ যা যা করতে হবেঃ
-✓ এই এসাইনমেন্টটি শুধুমাত্র redux toolkit দিয়ে করতে হবে। এজন্য যেভাবে এই মডিউলে vanilla node js প্রোজেক্টে @reduxjs/toolkit প্যাকেজ install করে প্রোজেক্টটি দেখানো হয়েছে, সেভাবেই আপনারা একটি প্রজেক্ট সেটআপ করে নিবেন। কোনো প্রকার UI based framwork দিয়ে করা যাবে না।
+This project is a Node.js application built with Redux Toolkit for state
+management. It fetches data from a provided API endpoint and performs related
+searches based on the fetched data.
 
-✓ আমাদের দেয়া api থেকে একটি Object আপনাকে async thunk function লিখে fetch করে নিয়ে আসতে হবে। প্রতিটি রিকুয়েস্টে আলাদা আলাদা একটি Object পাবেন।
+#### Features
 
-API - http://localhost:9000/videos
-✓ এই Object এর tags নামে একটি প্রোপার্টি আছে যেখানে কিছু tag আছে। এই tag গুলো ব্যবহার করে আরো একটি async thunk dispatch করতে হবে যেটি সার্ভার থেকে search করে রিলেটেড ভিডিও গুলো নিয়ে আসে। যেমনঃ
+- Fetches data from the API endpoint `http://localhost:9000/videos`
+  asynchronously using Redux Thunk.
+- Performs additional searches based on fetched tags using `tags_like` query
+  parameter in the API request.
+- Logs the fetched data objects to the console with views-based sorting (higher
+  views first).
 
-http://localhost:9000/videos?tags_like=javascript&tags_like=react
-✓ উপরের API থেকে যেই Array of Object পাবেন, সেই Object গুলোর ভেতরে views নামে একটি Property থাকবে, সেই property এর ভিত্তিতে Object গুলো সাজিয়ে Console এ লগ করতে হবে। যেগুলোর ভিউ বেশি থাকবে সেগুলো প্রথমে দেখাবে, এবং সব শেষে কম যেটি সেটি থাকবে।
+#### API Usage
 
-✓ Console এ লগ করার জন্যে অবশ্যই redux-logger এই middleware টি ব্যবহার করতে হবে।
+1. Initial fetch:
 
-✓ মনে রাখবেন, একবার node application run করে দিলেই দুটি API request sequentially পর পর রান করতে হবে অর্থাৎ প্রথম রিকুয়েস্টে যেই ট্যাগ গুলো পাবো সেই ট্যাগ দিয়ে ‘tags_like’ সার্চ দিয়ে বাকি রিলেটেড ভিডিও গুলো নিয়ে আসতে হবে।
+      - Endpoint: `http://localhost:9000/videos`
+      - Returns an array of video objects with properties like `title`, `tags`,
+        and `views`.
+
+2. Additional search based on tags:
+      - Endpoint: `http://localhost:9000/videos?tags_like=tag1&tags_like=tag2`
+      - Returns related videos based on the provided tags.
+
+#### Middleware Used
+
+- Redux Logger: Used for logging Redux actions and state changes to the console
+  for debugging purposes.
